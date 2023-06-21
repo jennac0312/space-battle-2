@@ -1,0 +1,37 @@
+h1{
+    text-align: center;
+}
+
+.gameBoard{
+    border: 2px solid blue;
+    margin: auto;
+    height: 800px;
+    width: 800px;
+    padding: 20px;
+}
+
+/* screen */
+.screen{
+    border: 2px solid purple;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.screen div {
+    border: 2px solid red;
+    height: 600px;
+    width: 150px;
+}
+
+div .battlefield{
+    width: 450px;
+}
+
+ /* controls */
+.controls{
+    border: 2px solid green;;
+    height: 200px;
+    text-align: center;
+}
+
