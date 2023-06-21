@@ -16,16 +16,36 @@ h1{
     display: flex;
     justify-content: space-between;
     width: 100%;
+    /* background-image: url('https://media.tenor.com/8S1229k0MEQAAAAM/space-water.gif'); */
+    background-image: url('https://e0.pxfuel.com/wallpapers/165/955/desktop-wallpaper-of-gifs-trippy-rainbow-in-outer-space-triangle-rainbow-space.jpg');
+    background-size: cover;
 }
 
 .screen div {
     border: 2px solid red;
     height: 600px;
     width: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+img{
+    height: auto;
+    width: 100%;
+}
+
+.alienSide img{
+    transform: scaleX(-1);
+    /* just learned how to flip an image */
+    height: 16%;
+    width: auto;
 }
 
 div .battlefield{
     width: 450px;
+    background-size: cover;
 }
 
  /* controls */
@@ -33,5 +53,11 @@ div .battlefield{
     border: 2px solid green;;
     height: 200px;
     text-align: center;
+}
+
+
+/* hidden */
+.hidden{
+    display: none;
 }
 

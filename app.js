@@ -12,7 +12,6 @@ class Player {
 }
 let p1 = new Player
 
-
 // create aliens
 
 class Alien {
@@ -22,7 +21,8 @@ class Alien {
         this.firepower = getRandomRange(2,4),
         this.accuracy = ( getRandomRange(6,8) / 10 ),
         this.isTurn = false,
-        this.attackLanded = undefined
+        this.attackLanded = undefined,
+        this.id = Number(name.slice(-1))
     }
 }
 
@@ -44,6 +44,8 @@ let alien5 = new Alien('alien 5')
 let alien6 = new Alien('alien 6')
 
 let aliens = [alien1, alien2, alien3, alien4, alien5, alien6]
+let deadALiens = []
+
 let remaining = []
 console.log(aliens)
 
@@ -67,16 +69,18 @@ console.log(currentEnemy)
 // remove eliminated aliens
 const removeAliens = () => {
     remaining = []
-    counter = 0
     aliens.forEach((alien) => {
         counter++
         // check health
         if(alien.hp > 0){
             // console.log( alien)
             remaining.push(alien)
+        } else {
+            deadALiens.push(alien)
         }
     })
     aliens = remaining
+    console.log('DEAD ALIENS: ',deadALiens)
 }
 
 // works as expected
@@ -139,7 +143,7 @@ const attack = () => {
     if(p1.isTurn && p1.attackLanded){
         console.log(`Player 1 hit ${currentEnemy.name} for ${p1.firepower} damage!`)
         currentEnemy.hp -= p1.firepower
-        console.log(`${currentEnemy.name.toUpperCase()} HEALTH NOW AT: ${currentEnemy.hp}`)
+        console.log(`${currentEnemy.name} HEALTH NOW AT: ${currentEnemy.hp}`)
     } else if(currentEnemy.isTurn && currentEnemy.attackLanded) {
         console.log(`${currentEnemy.name} hit Player 1 for ${currentEnemy.firepower} damage!`)
         p1.hp -= currentEnemy.firepower
@@ -152,10 +156,11 @@ const attack = () => {
     // }
 
     removeAliens()
+    removeAliensFromScreen()
     getCurrentEnemy()
-    console.log(`PLAYER HEALTH: ${p1.hp}`)
+    // console.log(`PLAYER HEALTH: ${p1.hp}`)
     console.log(`INCOMING ${currentEnemy.name} HEALTH: ${currentEnemy.hp}`)
-    console.log(`REMAINING ALIENS AFTER ATTACK:`, remaining)
+    console.log(`REMAINING ALIENS AFTER ATTACK:`, remaining.length)
     toggleTurn()
     checkWinner()
 }
@@ -171,6 +176,7 @@ const checkAccuracy = (who) => {
     let accuracyGoal = Math.random()
     return accuracyGoal > who.accuracy ? false : true
 }
+
 console.log('ACCURACY CHECK p1:',checkAccuracy(p1))
 console.log('ACCURACY CHECK', currentEnemy.name + ':',checkAccuracy(currentEnemy))
 
@@ -188,21 +194,52 @@ const checkWinner = () => {
     }
 }
 
+const retreat = (who) => {
+    alert(`${who} has retreated. Game Over`)
+    reset()
+}
 
 // reset game
 const reset = () => {
-    // clear console
-    console.clear()
-    console.log('NEW GAME')
-    // reset p1 stats
-    p1 = new Player
-    // create 6 new aliens
-    alien1 = new Alien
-    alien2 = new Alien
-    alien3 = new Alien
-    alien4 = new Alien
-    alien5 = new Alien
-    alien6 = new Alien
+    // // clear console
+    // console.clear()
+    // console.log('NEW GAME')
+    // // reset p1 stats
+    // p1 = new Player
+    // // create 6 new aliens
+    // alien1 = new Alien('alien 1')
+    // alien2 = new Alien('alien 2')
+    // alien3 = new Alien('alien 3')
+    // alien4 = new Alien('alien 4')
+    // alien5 = new Alien('alien 5')
+    // alien6 = new Alien('alien 6')
 
-    aliens = [alien1, alien2, alien3, alien4, alien5, alien6]
+    // aliens = [alien1, alien2, alien3, alien4, alien5, alien6]
+
+    // // reassign currentEnemy
+    // currentEnemy = aliens[0]
+
+    // // reset deadALiens 
+    // deadALiens = []
+    // console.log('new current enemy: ',currentEnemy)
+    // console.log(deadALiens)
+
+
+    // couldnt i simply force the window to reload instead? ...yes lol
+    location.reload()
+}
+
+
+// remove dead aliens from screen
+const removeAliensFromScreen = () => {
+    deadALiens.forEach((alien) => {
+        console.log('DEAD ALIEN ID:', typeof alien.id)
+        let htmlName = alien.name.replace(' ', '')
+        const alienImg = document.querySelector(`.${htmlName}`)
+        // console.log(alienImg)
+        // alienImg.src = ''
+
+        // much better solution
+        alienImg.classList.add('hidden')
+    })
 }
