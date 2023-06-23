@@ -1,30 +1,68 @@
-h1{
+body{
+    color: wheat;
+    background-color: rgb(0, 0, 0);
+    margin: auto;
+}
+
+.gameMachine{
+    background-image: url('https://cdnb.artstation.com/p/assets/images/images/021/325/183/large/max-fitzgerald-highresscreenshot00005.jpg?1571238725');
+    background-size: 100% 60%;
+    background-repeat: no-repeat;
+    background-position: center 0;
+    margin: auto;
+    border: 2px solid red;
+    height: 150vh;
+}
+
+.title{
+    /* background-color: rgb(58, 57, 57); */
+    width: 920px;
+    margin: 0 auto -15px auto;
+    padding: 40px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1, h2{
     text-align: center;
+    color: wheat;
+    margin: 5px;
 }
 
 .gameBoard{
-    border: 2px solid blue;
-    margin: auto;
-    height: 800px;
-    width: 800px;
+    border: 40px solid rgb(58, 57, 57);
+    border-radius: 20px;
+    border-top: 30px solid rgb(44, 44, 44);
+    border-bottom: 30px solid rgb(44, 44, 44);
+    display: flex;
+    justify-content: center;
+    /* margin: auto; */
+    margin-left: 390px;
+    margin-top: -1270px;
+    background-image: url('https://31.media.tumblr.com/tumblr_m9f65ui8151rzjlc4o1_500.gif');
+    height: 200px;
+    width: 400px;
     padding: 20px;
+    /* z-index: 2; */
 }
 
 /* screen */
 .screen{
-    border: 2px solid purple;
+    /* border: 2px solid yellowgreen; */
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    margin-top: -12px;
     width: 100%;
-    /* background-image: url('https://media.tenor.com/8S1229k0MEQAAAAM/space-water.gif'); */
-    background-image: url('https://e0.pxfuel.com/wallpapers/165/955/desktop-wallpaper-of-gifs-trippy-rainbow-in-outer-space-triangle-rainbow-space.jpg');
+    height: 110%;
+    background-image: url('https://31.media.tumblr.com/tumblr_m9f65ui8151rzjlc4o1_500.gif');
     background-size: cover;
 }
 
 .screen div {
-    border: 2px solid red;
-    height: 600px;
-    width: 150px;
+    /* border: 2px solid red; */
+    height: 100%;
+    width: 20%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -37,27 +75,102 @@ img{
 }
 
 .alienSide img{
-    transform: scaleX(-1);
+    /* transform: scaleX(-1); */
     /* just learned how to flip an image */
     height: 16%;
     width: auto;
 }
 
+.alien1{
+    /* order: 2; */
+}
+
 div .battlefield{
-    width: 450px;
+    width: 60%;
+    /* background-image: url('https://e0.pxfuel.com/wallpapers/165/955/desktop-wallpaper-of-gifs-trippy-rainbow-in-outer-space-triangle-rainbow-space.jpg'); */
     background-size: cover;
 }
 
  /* controls */
 .controls{
-    border: 2px solid green;;
-    height: 200px;
+    border: 2px solid green;
+    display: flex;
+    justify-content: space-between;
+    /* height: 200px; */
+    margin: auto;
+    width: 400px;
     text-align: center;
+    margin-top: 70px;
 }
 
+.controls button {
+    height: 40px;
+    width: 100px;
+    background-color: brown;
+
+    border: none;
+    border-radius: 10px;
+}
+
+
+/* stats */
+.playerStats, .alienStats{
+    border: 2px solid purple;
+    background-color: black;
+    text-align: center;
+    align-self: center;
+    /* width: 21%; */
+    display: none;
+}
+
+.playerStats > p, .alienStats > p {
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: space-around;
+    border-bottom: 2px solid rgba(165, 42, 42, .3);
+}
+
+h3{
+    color: brown;
+    /* text-decoration: underline; */
+    display: block !important;
+}
+
+p span{
+    font-weight: bold;
+}
 
 /* hidden */
 .hidden{
     display: none;
 }
 
+
+/* fade */
+@keyframes fadeOut {
+    0%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+        display: none;
+        transform: scaleX(100); /* cool... explosion effect*/
+    }
+}
+
+
+.fadeOut {
+    animation: fadeOut 2s forwards;
+}
+
+
+/* media query */
+@media (min-width: 1299px) {
+    .gameBoard{
+        margin-top: -1650px;
+        height: 250px;
+        width: 450px;
+        margin-left: 380px;
+        margin-bottom: 200px;
+    }
+}

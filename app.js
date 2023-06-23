@@ -17,7 +17,7 @@ let p1 = new Player
 class Alien {
     constructor(name){
         this.name = name;
-        this. hp = getRandomRange(3,6),
+        this.hp = getRandomRange(3,6),
         this.firepower = getRandomRange(2,4),
         this.accuracy = ( getRandomRange(6,8) / 10 ),
         this.isTurn = false,
@@ -47,12 +47,12 @@ let aliens = [alien1, alien2, alien3, alien4, alien5, alien6]
 let deadALiens = []
 
 let remaining = []
-console.log(aliens)
 
 alien3.hp = 20
 
-// counter
-let counter = 0
+// round counter
+let round = 1
+
 // get current enemy
 let currentEnemy
 
@@ -64,13 +64,11 @@ const getCurrentEnemy = () => {
 }
 
 getCurrentEnemy()
-console.log(currentEnemy)
 
 // remove eliminated aliens
 const removeAliens = () => {
     remaining = []
     aliens.forEach((alien) => {
-        counter++
         // check health
         if(alien.hp > 0){
             // console.log( alien)
@@ -128,6 +126,8 @@ const toggleTurn = () => {
 const attack = () => {
 
     announceFighters()
+    displayRound()
+    // round++
 
     p1.attackLanded = checkAccuracy(p1)
     currentEnemy.attackLanded = checkAccuracy(currentEnemy)
@@ -177,8 +177,8 @@ const checkAccuracy = (who) => {
     return accuracyGoal > who.accuracy ? false : true
 }
 
-console.log('ACCURACY CHECK p1:',checkAccuracy(p1))
-console.log('ACCURACY CHECK', currentEnemy.name + ':',checkAccuracy(currentEnemy))
+// console.log('ACCURACY CHECK p1:',checkAccuracy(p1))
+// console.log('ACCURACY CHECK', currentEnemy.name + ':',checkAccuracy(currentEnemy))
 
 
 // check winner
@@ -233,13 +233,33 @@ const reset = () => {
 // remove dead aliens from screen
 const removeAliensFromScreen = () => {
     deadALiens.forEach((alien) => {
-        console.log('DEAD ALIEN ID:', typeof alien.id)
+        console.log('DEAD ALIEN ID:', alien.id)
+
         let htmlName = alien.name.replace(' ', '')
         const alienImg = document.querySelector(`.${htmlName}`)
-        // console.log(alienImg)
-        // alienImg.src = ''
 
-        // much better solution
-        alienImg.classList.add('hidden')
+        // alienImg.classList.add('hidden')
+        alienImg.classList.add('fadeOut')
     })
 }
+
+
+
+// dom variables
+const roundNumberBox = document.querySelector('.round')
+const playerHp = document.querySelector('.playerHp')
+
+
+// update screen
+const updateScreen = () => {
+
+} 
+
+// display round
+const displayRound = () => {
+    console.log(`ROUND: ${round}`)
+    roundNumberBox.innerHTML = round
+}
+
+
+console.log('%c spacebattle', 'font-size: 40px; color: purple', )

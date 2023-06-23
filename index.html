@@ -1,46 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        
+        <div class="gameMachine">
+    </div>
 
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-    <h1>BATTLE AMONG THE STARS</h1>
-
-    <!-- game board -->
-    <div class="gameBoard">
-
-        <!-- screen -->
-        <div class="screen">
-            <div class="playerSide">
-                <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/56104b55617997.598c8eac4a3ac.gif" alt="" class="player1">
-            </div>
-
-            <div class="battlefield"></div>
-
-            <div class="alienSide">
-                <img src="https://www.fg-a.com/aliens/flying-alien.gif" alt="" class="alien1">
-                <img src="https://cutewallpaper.org/24/alien-transparent-gif/alien-75a6f-gang-acc82-gifs-6d26f-find-691dd-amp-ed3b3-share-0ccf6-on-5efa6-giphy.gif" alt="" class="alien2">
-                <img src="https://media.baamboozle.com/uploads/images/40143/1599096081_41375" alt="" class="alien3">
-                <img src="https://i.gifer.com/origin/24/2432cf5ff737ad7d1794a29d042eb02e_w200.gif" alt="" class="alien4">
-                <img src="https://images.squarespace-cdn.com/content/v1/5bcfdf91e8ba4404c104e52e/1541873022633-JZS36UGE5FK1V7OE9Z0Y/UFO-cry.gif" alt="" class="alien5">
-                <img src="https://images.squarespace-cdn.com/content/v1/5bcfdf91e8ba4404c104e52e/1541873023292-F42MK2JVX2T2XGE6H77U/UFO-dancing.gif" alt="" class="alien6">
-            </div>
+        <div class="title">
+            <h1></h1>
+            <h2 class="">ROUND: <span class="round">1</span></h2>
         </div>
 
-        <!-- buttons -->
+        <!-- game board -->
+        <div class="gameBoard">
+
+            <div class="playerStats">
+                <h3>PLAYER :</h3>
+                <p class="">HP: <span class="playerHp">20</span></p>
+                <p class="">FIREPOWER: <span class="playerFirepower">5</span></p>
+                <p class="">ACCURACY: <span class="playerAccuracy">.7</span></p>
+            </div>
+            <!-- screen -->
+            <div class="screen">
+
+                <div class="playerSide">
+                    <img src="https://media4.giphy.com/media/5wFHChzgBtfANDa76U/giphy.gif?cid=6c09b952va2xldvggex8gs751muc2yowum440g9cfemxtecy&ep=v1_stickers_related&rid=giphy.gif&ct=s" alt="" class="player1">
+                </div>
+
+                <div class="battlefield"></div>
+
+                <div class="alienSide">
+                    <img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/71507a50406523.58d0083370495.gif" alt="" class="alien1">
+                    <img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/8e518450406523.58d00833597cf.gif" alt="" class="alien2">
+                    <img src="https://images.squarespace-cdn.com/content/v1/5bcfdf91e8ba4404c104e52e/1541873024427-EP9L5HL8TDC44G9BBD7N/UFO-shocked.gif" alt="" class="alien3">
+                    <img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/1b60cb50406523.58d00833464f9.gif" alt="" class="alien4">
+                    <img src="https://images.squarespace-cdn.com/content/v1/5bcfdf91e8ba4404c104e52e/1541873022633-JZS36UGE5FK1V7OE9Z0Y/UFO-cry.gif" alt="" class="alien5">
+                    <img src="https://images.squarespace-cdn.com/content/v1/5bcfdf91e8ba4404c104e52e/1541873023292-F42MK2JVX2T2XGE6H77U/UFO-dancing.gif" alt="" class="alien6">
+                </div>
+            </div>
+            
+            <div class="alienStats">
+                <h3><span class="alienName">ALIEN 1</span>:</h3>
+                <p class="">HP: <span class="alienHp">0</span></p>
+                <p class="">firepower: <span class="alienFirepower">0</span></p>
+                <p class="">accuracy: <span class="alienAccuracy">0</span></p>
+            </div>
+            
+            <!-- buttons -->
+        </div>
+
         <div class="controls">
             <button class="attack" onclick="attack()">ATTACK</button>
             <button class="retreat" onclick="retreat()">RETREAT</button>
         </div>
-    </div>
     
-
-
+    
+    
 
 
     <script src="app.js"></script>
