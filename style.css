@@ -133,7 +133,7 @@ h1, h2{
 
 /* game over */
 .gameOverScreen{
-    border: 2px solid red;
+    /* border: 2px solid red; */
     display: flex;
     flex-direction: column;
     height: 100%;

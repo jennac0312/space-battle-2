@@ -134,9 +134,9 @@ const attack = () => {
     
 
     if(p1.isTurn && p1.attackLanded){
-        console.log(`%cPLAYER 1... FIGHT`, 'color: grey; font-size: 15px; font-weight: bold;')
+        console.log(`%cPLAYER 1... FIGHT`, 'color: grey; font-size: 15px; font-weight: bold; background-color: black;')
     } else if(currentEnemy.isTurn && currentEnemy.attackLanded){
-        console.log(`%c${currentEnemy.name} FIGHT!`, 'color: grey; font-size: 15px; font-weight: bold;')
+        console.log(`%c${currentEnemy.name}... FIGHT!`, 'color: grey; font-size: 15px; font-weight: bold; background-color: black;')
     }
 
 
