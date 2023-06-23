@@ -78,7 +78,7 @@ const removeAliens = () => {
         }
     })
     aliens = remaining
-    console.log('DEAD ALIENS: ',deadALiens)
+    // console.log('DEAD ALIENS: ',deadALiens)
 }
 
 // works as expected
@@ -106,17 +106,17 @@ const toggleTurn = () => {
         if(p1.attackLanded){
             p1.isTurn = false
             currentEnemy.isTurn = true
-            console.log(`Player 1 hit ${currentEnemy.name} for ${p1.firepower} damage!`)
+            // console.log(`%cPlayer 1 hit ${currentEnemy.name} for ${p1.firepower} damage!`, 'color: orange; font-size: 15px')
         } else {
-            console.log(currentEnemy.name, `dodged player 1's attack!`)
+            console.log(`%c${currentEnemy.name} DODGED player 1's attack!`, 'color: lightblue; font-size: 15px;')
         }
     } else {
         if(currentEnemy.attackLanded){
             p1.isTurn = true
             currentEnemy.isTurn = false
-            console.log(`${currentEnemy.name} hit Player 1 for ${currentEnemy.firepower} damage!`)
+            // console.log(`%c${currentEnemy.name} hit Player 1 for ${currentEnemy.firepower} damage!`, 'color: orange; font-size: 15px')
         } else {
-            console.log(`player 1 dodged ${currentEnemy.name}'s attack!`)
+            console.log(`%c player 1 DODGED ${currentEnemy.name}'s attack!`, 'color: lightblue')
         }
     } 
 }
@@ -126,7 +126,7 @@ const toggleTurn = () => {
 const attack = () => {
 
     announceFighters()
-    displayRound()
+    // displayRound()
     // round++
 
     p1.attackLanded = checkAccuracy(p1)
@@ -134,20 +134,24 @@ const attack = () => {
     
 
     if(p1.isTurn && p1.attackLanded){
-        console.log(`PLAYER 1... FIGHT`)
+        console.log(`%cPLAYER 1... FIGHT`, 'color: grey; font-size: 15px; font-weight: bold;')
     } else if(currentEnemy.isTurn && currentEnemy.attackLanded){
-        console.log(`ALIEN... FIGHT!`)
+        console.log(`%c${currentEnemy.name} FIGHT!`, 'color: grey; font-size: 15px; font-weight: bold;')
     }
 
 
     if(p1.isTurn && p1.attackLanded){
-        console.log(`Player 1 hit ${currentEnemy.name} for ${p1.firepower} damage!`)
+        console.log(`%cPlayer 1 hit ${currentEnemy.name} for ${p1.firepower} damage!`, 'color: orange; font-size: 15px')
         currentEnemy.hp -= p1.firepower
-        console.log(`${currentEnemy.name} HEALTH NOW AT: ${currentEnemy.hp}`)
+        if(currentEnemy.hp > 0){
+            console.log(`%c${currentEnemy.name} HEALTH NOW AT: ${currentEnemy.hp}`, 'font-size: 16px;')
+        } else {
+            console.log(`%c${currentEnemy.name} eliminated`, 'font-size: 16px; color: darkred')
+        }
     } else if(currentEnemy.isTurn && currentEnemy.attackLanded) {
-        console.log(`${currentEnemy.name} hit Player 1 for ${currentEnemy.firepower} damage!`)
+        console.log(`%c${currentEnemy.name} hit Player 1 for ${currentEnemy.firepower} damage!`, 'color: orange; font-size: 15px')
         p1.hp -= currentEnemy.firepower
-        console.log(`PLAYER 1 HEALTH NOW AT: ${p1.hp}`)
+        console.log(`%cPLAYER 1 HEALTH NOW AT: ${p1.hp}`, 'font-size: 16px;')
     }
 
     // only toggle if alien survives
@@ -159,15 +163,15 @@ const attack = () => {
     removeAliensFromScreen()
     getCurrentEnemy()
     // console.log(`PLAYER HEALTH: ${p1.hp}`)
-    console.log(`INCOMING ${currentEnemy.name} HEALTH: ${currentEnemy.hp}`)
-    console.log(`REMAINING ALIENS AFTER ATTACK:`, remaining.length)
+    console.log(`%cINCOMING`, 'color: orange; font-weight: bold; text-decoration: underline;', `${currentEnemy.name} HEALTH: ${currentEnemy.hp}`)
     toggleTurn()
+    console.log(`%cYou got this Player, only ${remaining.length} aliens left!`, 'color: yellowgreen; font-size: 25px;')
     checkWinner()
 }
 
 // announce fighters 
 const announceFighters = () => {
-    console.log(`PLAYER 1 VS. ${currentEnemy.name}`)
+    console.log(`%cPLAYER 1 VS. ${currentEnemy.name}`, 'color: red; font-size: 20px')
 }
 
 
@@ -181,26 +185,49 @@ const checkAccuracy = (who) => {
 // console.log('ACCURACY CHECK', currentEnemy.name + ':',checkAccuracy(currentEnemy))
 
 
+// dom variables
+const roundNumberBox = document.querySelector('.round')
+const playerHp = document.querySelector('.playerHp')
+const startScreen = document.querySelector('.startScreen')
+const startButton = document.querySelector('.play')
+const battleScreen = document.querySelector('.battleScreen')
+const controls = document.querySelector('.controls')
+const gameOverScreen = document.querySelector('.gameOverScreen')
+const winnerText = document.querySelector('.winnerText')
+
 // check winner
 const checkWinner = () => {
     if(currentEnemy === undefined || remaining.length === 0){
-        alert(`Congratulations! Player Wins`)
-        reset()
+        battleScreen.classList.add('hidden')
+        gameOverScreen.classList.remove('hidden')
+        controls.classList.add('hidden')
+        winnerText.innerHTML = `Congratulations! Player Wins`
+        // alert(`Congratulations! Player Wins`)
+        reset(5000)
     } else if(p1.hp <= 0){
-        alert(`Aliens win the galaxy!`)
-        reset()
+        setTimeout(() => {
+            battleScreen.classList.add('hidden')
+            gameOverScreen.classList.remove('hidden')
+        }, 5000)
+        winnerText.innerHTML = `Aliens win the galaxy!`
+        // alert(`Aliens win the galaxy!`)
+        reset(5000)
     } else {
-        console.log(`-----------------game continues---------------------`)
+        console.log(`%c ~~~~~~~~game continues~~~~~~~~`, 'color: green; font-size: 15px')
     }
 }
 
 const retreat = (who) => {
-    alert(`${who} has retreated. Game Over`)
-    reset()
+    if(who === 'p1'){
+        alert(`Player 1 has retreated. Game Over`)
+    } else {
+        alert(`${currentEnemy.name} has retreated. Game Over`)
+    }
+    reset(0)
 }
 
 // reset game
-const reset = () => {
+const reset = (time) => {
     // // clear console
     // console.clear()
     // console.log('NEW GAME')
@@ -226,40 +253,36 @@ const reset = () => {
 
 
     // couldnt i simply force the window to reload instead? ...yes lol
-    location.reload()
+    setTimeout(() => {
+        location.reload()
+    }, time);
 }
 
 
 // remove dead aliens from screen
 const removeAliensFromScreen = () => {
     deadALiens.forEach((alien) => {
-        console.log('DEAD ALIEN ID:', alien.id)
+        // console.log('DEAD ALIEN ID:', alien.id)
 
         let htmlName = alien.name.replace(' ', '')
         const alienImg = document.querySelector(`.${htmlName}`)
 
-        // alienImg.classList.add('hidden')
         alienImg.classList.add('fadeOut')
+
+        setTimeout(() => {
+            alienImg.classList.add('hidden')
+        }, 1000)
     })
 }
 
 
-
-// dom variables
-const roundNumberBox = document.querySelector('.round')
-const playerHp = document.querySelector('.playerHp')
-
-
-// update screen
-const updateScreen = () => {
-
-} 
-
-// display round
-const displayRound = () => {
-    console.log(`ROUND: ${round}`)
-    roundNumberBox.innerHTML = round
+// switch to game screen
+const startGame = () => {
+    startScreen.classList.add('hidden')
+    battleScreen.classList.remove('hidden')
+    controls.classList.remove('hidden')
 }
+
 
 
 console.log('%c spacebattle', 'font-size: 40px; color: purple', )

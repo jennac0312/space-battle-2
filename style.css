@@ -10,7 +10,7 @@ body{
     background-repeat: no-repeat;
     background-position: center 0;
     margin: auto;
-    border: 2px solid red;
+    /* border: 2px solid red; */
     height: 150vh;
 }
 
@@ -22,6 +22,9 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+.round{
+    color: black !important;
 }
 
 h1, h2{
@@ -50,23 +53,114 @@ h1, h2{
 /* screen */
 .screen{
     /* border: 2px solid yellowgreen; */
-    display: flex;
+    /* display: flex;
     justify-content: center;
     margin-top: -12px;
     width: 100%;
     height: 110%;
     background-image: url('https://31.media.tumblr.com/tumblr_m9f65ui8151rzjlc4o1_500.gif');
-    background-size: cover;
+    background-size: cover; */
+}
+
+.battleScreen{
+     /* border: 2px solid yellowgreen; */
+     display: flex;
+     justify-content: center;
+     margin-top: -12px;
+     width: 100%;
+     height: 110%;
+     background-image: url('https://31.media.tumblr.com/tumblr_m9f65ui8151rzjlc4o1_500.gif');
+     background-size: cover;
 }
 
 .screen div {
     /* border: 2px solid red; */
-    height: 100%;
+    /* height: 100%;
     width: 20%;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: center; */
+}
+
+.battleScreen div{
+     /* border: 2px solid red; */
+     height: 100%;
+     width: 20%;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+}
+
+
+/* start screen */
+.startScreen{
+    /* border: 2px solid red; */
+    /* text-align: center; */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+@keyframes flashing {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+.play{
+    background-color: transparent;
+    color: wheat;
+    font-size: 1.5em;
+    border: 1px solid wheat;
+    border-radius: 20px;
+    width: fit-content;
+    align-self: center;
+    padding: 5px 30px;
+    animation: flashing 1s infinite;
+}
+.play:hover{
+    animation-play-state: paused;
+    /* opacity: 1; */
+    cursor: pointer;
+}
+
+
+/* game over */
+.gameOverScreen{
+    border: 2px solid red;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 400px;
+    justify-content: space-around;
+    text-align: center;
+}
+.winnerText{
+    font-size: 1.5em;
+}
+
+.restart{
+    background-color: transparent;
+    color: wheat;
+    font-size: 1.5em;
+    border: 1px solid wheat;
+    border-radius: 20px;
+    width: fit-content;
+    align-self: center;
+    padding: 5px 30px;
+    animation: flashing 1s infinite;
+}
+
+.restart:hover{
+    animation-play-state: paused;
+    /* opacity: 1; */
+    cursor: pointer;
 }
 
 img{
@@ -93,25 +187,60 @@ div .battlefield{
 
  /* controls */
 .controls{
-    border: 2px solid green;
+    /* border: 2px solid green; */
     display: flex;
     justify-content: space-between;
-    /* height: 200px; */
+    align-items: center;
+    height: 200px;
     margin: auto;
-    width: 400px;
+    margin-left: 700px;
+    width: 300px;
     text-align: center;
-    margin-top: 70px;
+    margin-top: -100px;
 }
 
 .controls button {
+    font-family: monospace;
+    letter-spacing: 2px;
     height: 40px;
     width: 100px;
-    background-color: brown;
-
-    border: none;
+    color: rgb(0, 0, 0);
+    border-color: #b81c25;
+    font-weight: bold;
+    background-color: #b81c25;
+    /* border: 2px solid black; */
+    /* box-shadow: 10px 2px 10px #b81c25; */
     border-radius: 10px;
+    font-size: 1.2em;
+    text-align: center;
 }
 
+.controls button:hover{
+    cursor: pointer;
+}
+
+.left button {
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    margin-left: 25px;
+    margin-top: 30px;
+}
+
+.right button{
+    display: block;
+    margin-right: 10px;
+    height: 50px;
+}
+
+.top{
+    margin-bottom: 50px;
+    margin-top: -10px
+}
+
+.top button {
+    margin-top: 8px;
+}
 
 /* stats */
 .playerStats, .alienStats{
